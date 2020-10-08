@@ -3,8 +3,8 @@
         <form>
             用户名：<input type="text" id="name" v-model="username" placeholder="请输入账号或邮箱"><br>
             密码：<input type="password" id="password" v-model="password" placeholder="请输入密码"><br>
-            <button @click="btnclick" type="button">登录</button>
-            <button @click="test" type="button">注册</button>
+            <button @click="loginin" type="button">登录</button>
+            <button @click="registered" type="button">注册</button>
         </form>
     </div>
 </template>
@@ -19,8 +19,8 @@
             }
         },
         methods: {
-            btnclick() {
-                this.$axios.get('/api/hello', {
+            loginin() {
+                this.$axios.get('/api/login', {
                     params: {
                         username: this.username,
                         password: this.password
@@ -31,10 +31,8 @@
                     }
                 })
             },
-            test(){
-                this.$axios.get('/api/login').then((response) => {
-                    console.log(response.data)
-                })
+            registered(){
+                this.$router.push("registered")
             }
         }
     }
