@@ -13,6 +13,12 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+
+ 数据库管理页面网址： http://localhost:8080/druid/login.html
+
+*/
+
 @Configuration
 public class DruidConfig {
 
