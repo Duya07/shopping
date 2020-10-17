@@ -1,0 +1,40 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/shopping
+    username: root
+    password: "0728"
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 3
+    minIdle: 3
+    maxActive: 10
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    # 用来检测连接是否有效的sql
+    validationQuery: select 'x'
+    testWhileIdle: true
+    # 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+    testOnBorrow: false
+    # 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+    testOnReturn: false
+    # 打开PSCache
+    poolPreparedStatements: false
+    # 配置监控统计拦截的filters，stat:监控统计、log4j：日志记录、wall：防御sql注入
+    # 如果运行时报错  java.lang.ClassNotFoundException: org.apache.log4j.Priority
+    # 则导入 log4j 依赖即可，Maven 地址： https://mvnrepository.com/artifact/log4j/log4j
+#      filters: stat,wall,log4j,config
+    # 指定每个连接上PSCache的大小
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 合并多个DruidDataSource的监控数据
+    useGlobalDataSourceStat: true
+    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    # 管理页面账号密码
+    stat-view-servlet:
+      login-username: admin
+      login-password: admin
+  jpa:
+    open-in-view: false
