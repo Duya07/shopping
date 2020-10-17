@@ -32,9 +32,5 @@ spring:
     useGlobalDataSourceStat: true
     # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
-    # 管理页面账号密码
-    stat-view-servlet:
-      login-username: admin
-      login-password: admin
   jpa:
     open-in-view: false

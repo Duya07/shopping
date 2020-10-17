@@ -69,15 +69,5 @@
       "name": "spring.datasource.connectionProperties",
       "type": "java.lang.String",
       "description": "Description for spring.datasource.connectionProperties."
-    },
-    {
-      "name": "spring.datasource.stat-view-servlet.login-username",
-      "type": "java.lang.String",
-      "description": "Description for spring.datasource.stat-view-servlet.login-username."
-    },
-    {
-      "name": "spring.datasource.stat-view-servlet.login-password",
-      "type": "java.lang.String",
-      "description": "Description for spring.datasource.stat-view-servlet.login-password."
     }
   ] }
