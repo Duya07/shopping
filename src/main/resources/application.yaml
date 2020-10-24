@@ -34,7 +34,3 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
   jpa:
     open-in-view: false
-  security:
-    user:
-      name: admin
-      password: "0728"

@@ -13,9 +13,6 @@ public class test {
 
     @GetMapping("login")
     public String login(String username, String password) {
-        if ("admin".equals(username) & "admin".equals(password)) {
-            return "1";
-        }
         return "username:" + username + ",password:" + password;
     }
 
