@@ -1,7 +1,10 @@
 package com.duya.shopping.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.duya.shopping.service.UserImpl;
+import com.duya.shopping.utils.ServiceResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,8 +15,10 @@ public class test {
     private UserImpl user;
 
     @GetMapping("login")
-    public String login(String username, String password) {
-        return "username:" + username + ",password:" + password;
+    public String login() {
+        Object curUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ServiceResult rm = ServiceResult.success(curUser);
+        return JSON.toJSONString(rm);
     }
 
     @GetMapping("registered")
