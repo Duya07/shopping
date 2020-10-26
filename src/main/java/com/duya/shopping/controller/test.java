@@ -15,8 +15,8 @@ public class test {
 
     @GetMapping("login")
     public String login() {
-
-        return "1";
+        ServiceResult sr = ServiceResult.success("login接口成功了兄弟");
+        return JSON.toJSONString(sr);
     }
 
     @GetMapping("registered")
