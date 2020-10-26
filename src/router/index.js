@@ -4,6 +4,7 @@ import login from '../components/login.vue'
 import home from '../components/home.vue'
 import manage from "@/components/manage";
 import registered from "@/components/registered";
+import success from "@/components/success";
 
 Vue.use(VueRouter)
 
@@ -11,6 +12,10 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: "/",
+        component: home
+    },
+    {
+        path: "/index",
         component: home
     },
     {
@@ -24,6 +29,10 @@ const routes = [
     {
         path: "/registered",
         component: registered
+    },
+    {
+        path: "/success",
+        component: success
     }
 ]
 
