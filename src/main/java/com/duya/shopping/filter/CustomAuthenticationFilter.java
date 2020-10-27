@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
+import java.util.regex.*;
 
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     @Override
@@ -22,8 +23,15 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
             UsernamePasswordAuthenticationToken authRequest = null;
             try (InputStream is = request.getInputStream()) {
                 Map<String,String> authenticationBean = mapper.readValue(is, Map.class);
-                authRequest = new UsernamePasswordAuthenticationToken(
-                        authenticationBean.get("username"), authenticationBean.get("password"));
+                String result = authenticationBean.toString();
+                String pattern = "\"username\":\"(.*?)\",\"password\":\"(.*?)\"";
+                Pattern r = Pattern.compile(pattern);
+                Matcher m = r.matcher(result);
+                m.find();
+                // m.group(1) 用户名 m.group(2) 密码
+                String username = m.group(1);
+                String password = m.group(2);
+                authRequest = new UsernamePasswordAuthenticationToken(username, password);
             } catch (IOException e) {
                 e.printStackTrace();
                 authRequest = new UsernamePasswordAuthenticationToken(

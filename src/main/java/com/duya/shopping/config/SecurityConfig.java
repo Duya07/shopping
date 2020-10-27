@@ -41,23 +41,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .formLogin().loginProcessingUrl("/login")
-//                .successHandler((req, resp, authentication) -> {
-//                    Object principal = authentication.getPrincipal();
-//                    resp.setContentType("application/json;charset=utf-8");
-//                    PrintWriter out = resp.getWriter();
-//                    out.write(JSON.toJSONString(ServiceResult.success(principal)));
-//                    out.flush();
-//                    out.close();
-//                })
-//                .failureHandler((req, resp, exception) -> {
-//                    System.out.println(exception);
-//                    resp.setContentType("application/json;charset=utf-8");
-//                    PrintWriter out = resp.getWriter();
-//                    out.write(JSON.toJSONString(ServiceResult.error(
-//                            new ServiceResult.DefaultMessage<>("003", "账号或者密码错误"))));
-//                    out.flush();
-//                    out.close();
-//                })
                 .permitAll()
                 .and()
                 .logout().permitAll()
@@ -99,7 +82,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 resp.setContentType("application/json;charset=utf-8");
                 PrintWriter out = resp.getWriter();
                 out.write(JSON.toJSONString(ServiceResult.error(
-                        new ServiceResult.DefaultMessage<>("003", "账号或者密码错误")
+                        new ServiceResult.DefaultMessage<>("00000003", "账号或者密码错误")
                 )));
                 out.flush();
                 out.close();
