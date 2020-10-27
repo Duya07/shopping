@@ -23,7 +23,7 @@
         },
         methods: {
             registered() {
-                this.$axios.get('/api/registered', {
+                this.$axios.get('/registered', {
                     params: {
                         username: this.username,
                         password: this.password,
