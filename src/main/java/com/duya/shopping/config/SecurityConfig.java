@@ -1,8 +1,10 @@
 package com.duya.shopping.config;
 
 import com.alibaba.fastjson.JSON;
+import com.duya.shopping.utils.CodeMessage;
 import com.duya.shopping.utils.ServiceResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -28,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll()
 
                 .and()
-                .formLogin().loginProcessingUrl("/login").permitAll()
+                .formLogin().loginProcessingUrl("/login")
                 .successHandler((req, resp, authentication) -> {
                     Object principal = authentication.getPrincipal();
                     resp.setContentType("application/json;charset=utf-8");
@@ -40,13 +42,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler((req, resp, authentication) -> {
                     resp.setContentType("application/json;charset=utf-8");
                     PrintWriter out = resp.getWriter();
-                    out.write(JSON.toJSONString(ServiceResult.error()));
+                    out.write(JSON.toJSONString(ServiceResult.error(
+                            new ServiceResult.DefaultMessage<>("003", "账号或者密码错误"))));
                     out.flush();
                     out.close();
-                });
+                }).permitAll()
+                .and()
+                .logout().permitAll()
+                .and()
+                .csrf().disable();
 
-        // 退出还没好
-        http.logout();
 
     }
 

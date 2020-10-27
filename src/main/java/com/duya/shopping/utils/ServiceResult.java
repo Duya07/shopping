@@ -44,11 +44,17 @@ public class ServiceResult<T, C> implements Serializable {
         return builder.isSuccess(true).code(codeMessage.getCode()).message(codeMessage.getMessage());
     }
 
+    /*
+    默认SUCCESS
+     */
     public static <D> ServiceResult<D, String> success(D data) {
         ServiceResultBuilder<D, String> success = success(SUCCESS);
         return success.data(data).build();
     }
 
+    /*
+    传进去一个 CodeMessage
+     */
     public static <D, C> ServiceResult<D, C> error(CodeMessage<C> codeMessage) {
         ServiceResultBuilder<D, C> builder = builder();
         return builder.isSuccess(false).code(codeMessage.getCode()).message(codeMessage.getMessage()).build();
