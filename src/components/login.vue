@@ -18,18 +18,17 @@
         },
         methods: {
             loginin() {
-                // var jsonStr = {username: this.username, password: this.password};
-                // var json = JSON.stringify(jsonStr)
-                console.log(this.username)
-                console.log(this.password)
+                var jsonStr = {username: this.username, password: this.password};
+                var json = JSON.stringify(jsonStr)
+
                 this.$axios.post('/login', {
                     data: {
-                        username:this.username,
-                        password:this.password
+                        json
                     }
                     }).then((response) => {
-                    console.log(response.data.codeMessage.code);
-                    console.log(response.data.codeMessage.message);
+                        if (response.data.codeMessage.code === "00000000"){
+                            this.$router.push("manage")
+                        }
                 })
             },
             registered(){
