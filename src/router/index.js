@@ -24,7 +24,19 @@ const routes = [
     },
     {
         path: "/manage",
-        component: manage
+        component: manage,
+        beforeEnter: (to, from, next) => {
+            let islogin = localStorage.getItem("islogin");
+            islogin = Boolean(Number(islogin));
+
+            if(to.path === "/manage" && from.path !== "/manage") {
+                if (islogin) {
+                    next();
+                } else {
+                    next("/");
+                }
+            }
+        }
     },
     {
         path: "/registered",

@@ -23,8 +23,8 @@
         },
         methods: {
             registered() {
-                this.$axios.get('/registered', {
-                    params: {
+                this.$axios.post('/registered', {
+                    data: {
                         username: this.username,
                         password: this.password,
                         email: this.email,
@@ -38,6 +38,6 @@
     }
 </script>
 
-<style scoped>
+<style>
 
 </style>

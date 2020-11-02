@@ -1,16 +1,38 @@
 <template>
-    <div id="home">
-        <h1>首页</h1>
-        <router-link to="/login">登录</router-link>
-    </div>
+    <el-container>
+        <el-header><shopHeader></shopHeader></el-header>
+        <el-main></el-main>
+        <el-footer></el-footer>
+    </el-container>
 </template>
 
 <script>
+    import shopHeader from "@/components/header/shopHeader";
+
     export default {
-        name: "home"
+        name: "home",
+        components: {
+            shopHeader
+        }
     }
 </script>
 
-<style scoped>
+<style>
+    .el-header, .el-footer {
+        background-color: #B3C0D1;
+        color: #333;
+        text-align: center;
+    }
 
+    .el-aside {
+        background-color: #D3DCE6;
+        color: #333;
+        text-align: center;
+    }
+
+    .el-main {
+        background-color: #E9EEF3;
+        color: #333;
+        text-align: center;
+    }
 </style>
