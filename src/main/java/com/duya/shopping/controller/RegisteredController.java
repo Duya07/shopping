@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class test {
+public class RegisteredController {
 
     @Autowired
     private UserImpl user;
 
-    @GetMapping("/registered")
+    @PostMapping("/registered")
     public String registered(String username, String password, String email, String mobile) {
         user.registered(username, password, email, mobile);
         return "ok";

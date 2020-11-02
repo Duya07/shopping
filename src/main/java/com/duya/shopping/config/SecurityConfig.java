@@ -36,11 +36,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     /*
     /manage/** 需要admin权限 其他都不需要权限
-     */
+    */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/manage/**").hasRole("admin")
                 .anyRequest().permitAll()
 
                 .and()
