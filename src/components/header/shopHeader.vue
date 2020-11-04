@@ -1,46 +1,1 @@
-<template>
-    <div>
-        <el-menu mode="horizontal" @select="handleSelect">
-            <el-menu-item index="1">首页</el-menu-item>
-            <el-submenu index="2">
-                <template slot="title">分类</template>
-                <el-menu-item v-for="(item,i) in result" :key="item" :index="i.toString()">{{ item }}</el-menu-item>
-            </el-submenu>
-        </el-menu>
-    </div>
-
-
-</template>
-
-<script>
-    export default {
-        name: "shopHeader",
-        data() {
-            return {
-                result: []
-            }
-        },
-        methods: {
-            handleSelect(key) {
-                console.log(key);
-            },
-        },
-        created: function () {
-            let _this = this;
-            _this.$nextTick(function () {
-                this.$axios.post('/menu').then((response) => {
-                    let data = response.data;
-                    let length = data.length;
-                    for (let i = 0; i < length; i += 3) {
-                        let a = data.slice(i, i+3)
-                        this.result.push(a[0] + " / " + a[1] + " / " + a[2])
-                    }
-                })
-            });
-        }
-    }
-</script>
-
-<style>
-
-</style>
+<template>    <el-menu mode="horizontal" @select="handleSelect">        <el-row style="border: none">            <el-col :span="1">                <el-menu-item index="1">首页</el-menu-item>            </el-col>            <template v-if="islogin">                <el-col :span="1" :push="18">                    <el-menu-item index="2" id="login" class="clear">登录</el-menu-item>                </el-col>                <el-col :span="1" :push="18" >                    <el-menu-item index="3" id="registered" class="clear">注册</el-menu-item>                </el-col>                <el-col :span="1" :push="18">                    <el-menu-item index="4" id="logout" class="clear">登出</el-menu-item>                </el-col>            </template>            <template v-else>                <el-col :span="1" :push="19">                    <el-menu-item index="2" id="login" class="clear">登录</el-menu-item>                </el-col>                <el-col :span="1" :push="19" >                    <el-menu-item index="3" id="registered" class="clear">注册</el-menu-item>                </el-col>            </template>        </el-row>    </el-menu></template><script>    export default {        name: "shopHeader",        inject:['reload'],                                 //注入App里的reload方法        data() {            return {                result: []            }        },        methods: {            handleSelect(key) {                if (key == 1){                    this.reload();  // 刷新页面                }                if (key == 3){                    this.$router.push("/login")                }                if (key == 4){                    this.$router.push("/registered")                }                if (key == 5){                    this.$axios.post('/logout').then((response) => {                        if (response.data.codeMessage.code === "00000000") {                            localStorage.setItem("islogin", 0);                            alert("您已登出");                            this.reload();  // 刷新页面                        }                    })                }            },        },        computed: {            islogin() {                let l = localStorage.getItem("islogin");                return Boolean(Number(l));            }        }    }</script><style scoped></style>

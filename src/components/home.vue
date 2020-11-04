@@ -1,26 +1,34 @@
 <template>
     <el-container>
         <el-header><shopHeader></shopHeader></el-header>
-        <el-main></el-main>
+        <div id="b">
+            <el-main><shopMain></shopMain></el-main>
+        </div>
         <el-footer></el-footer>
     </el-container>
 </template>
 
 <script>
     import shopHeader from "@/components/header/shopHeader";
+    import shopMain from "@/components/main/shopMain";
 
     export default {
         name: "home",
         components: {
-            shopHeader
+            shopHeader,
+            shopMain
         }
     }
 </script>
 
-<style>
+<style scoped>
+    #b {
+        background: #333333;
+    }
+
     .el-header, .el-footer {
-        background-color: #B3C0D1;
-        color: #333;
+        /*background-color: #B3C0D1;*/
+        /*color: #333;*/
         text-align: center;
     }
 
@@ -31,8 +39,9 @@
     }
 
     .el-main {
+        width: 70%;
         background-color: #E9EEF3;
         color: #333;
-        text-align: center;
+        margin: auto;
     }
 </style>

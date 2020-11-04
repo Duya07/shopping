@@ -1,10 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import login from '../components/login.vue'
+
+
 import home from '../components/home.vue'
 import manage from "@/components/manage";
-import registered from "@/components/registered";
-import success from "@/components/success";
+
+// login 页面
+import login from '../components/login/login.vue'
+import registered from "@/components/login/registered";
+
 
 Vue.use(VueRouter)
 
@@ -42,10 +46,6 @@ const routes = [
         path: "/registered",
         component: registered
     },
-    {
-        path: "/success",
-        component: success
-    }
 ]
 
 const router = new VueRouter({
